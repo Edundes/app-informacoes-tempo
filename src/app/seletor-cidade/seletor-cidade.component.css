@@ -1,0 +1,41 @@
+/* Estilo para o contêiner principal */
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    text-align: center;
+    align-items: center;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+/* Estilo para o campo de entrada */
+input {
+  padding: 10px;
+  margin-top: 10px;
+  width: 25%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Estilo para o botão */
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Estilo para o botão quando hover */
+button:hover {
+  background-color: #0056b3;
+}
