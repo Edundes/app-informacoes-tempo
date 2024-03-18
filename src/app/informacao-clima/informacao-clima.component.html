@@ -1,1 +1,5 @@
-<p>informacao-clima works!</p>
+<div *ngIf="previsaoClima">
+  <h2>Previsão do Clima para {{ cidadeInformada }}</h2>
+  <p>Temperatura: {{ previsaoClima.temperatura }}°C</p>
+  <p>Condição: {{ previsaoClima.condicao }}</p>
+</div>
