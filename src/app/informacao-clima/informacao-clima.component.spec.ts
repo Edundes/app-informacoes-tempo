@@ -11,7 +11,7 @@ describe('InformacaoClimaComponent', () => {
       imports: [InformacaoClimaComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(InformacaoClimaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -19,5 +19,12 @@ describe('InformacaoClimaComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should display the city name', () => {
+    component.cidadeInformada = 'Goiânia';
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('h2').textContent).toContain('Goiânia');
   });
 });
