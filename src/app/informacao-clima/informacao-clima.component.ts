@@ -1,10 +1,13 @@
 import {Component, Input} from '@angular/core';
 import { ServicoClimaService, PrevisaoClima} from "../servico-clima.service";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-informacao-clima',
   standalone: true,
-  imports: [],
+  imports: [
+    NgIf
+  ],
   templateUrl: './informacao-clima.component.html',
   styleUrl: './informacao-clima.component.css'
 })
