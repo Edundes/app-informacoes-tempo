@@ -19,12 +19,8 @@ export class ServicoClimaService {
 
   getPrevisaoClima(city: string, apiKey: string): Observable<PrevisaoClima> {
 
-    const urlApi = 'https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}&lang=pt_br';
+    const urlApi = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}&lang=pt_br`;
 
     return this.http.get<PrevisaoClima>(urlApi);
   }
 }
-
-// 1dd0a6555a320942db378261b6ac18f2
-// https://api.openweathermap.org/data/2.5/weather?q=${goiania}&units=metric&appid=${1dd0a6555a320942db378261b6ac18f2}&lang=pt_br
-// https://api.openweathermap.org/data/2.5/weather?q=goiania&units=metric&appid=1dd0a6555a320942db378261b6ac18f2&lang=pt_br
