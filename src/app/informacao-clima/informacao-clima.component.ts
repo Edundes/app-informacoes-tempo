@@ -1,13 +1,11 @@
 import {Component, Input} from '@angular/core';
 import { ServicoClimaService, PrevisaoClima} from "../servico-clima.service";
-import {NgIf} from "@angular/common";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-informacao-clima',
   standalone: true,
-  imports: [
-    NgIf
-  ],
+  imports: [CommonModule],
   templateUrl: './informacao-clima.component.html',
   styleUrl: './informacao-clima.component.css'
 })
