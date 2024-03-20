@@ -19,15 +19,19 @@ export class InformacaoClimaComponent {
   constructor(private servicoClimaService: ServicoClimaService) {}
 
   ngOnInit() {
+    console.log('Cidade informada:', this.cidadeInformada);
     this.buscaPrevisaoClima();
   }
 
   buscaPrevisaoClima() {
+    console.log('Buscando previsão do clima para:', this.cidadeInformada);
     const apiKey = '1dd0a6555a320942db378261b6ac18f2';
     this.servicoClimaService.getPrevisaoClima(this.cidadeInformada, apiKey)
       .subscribe((previsao => {
+        console.log('Dados climáticos recebidos:', previsao);
         this.previsaoClima = previsao;
-      }))
-  }
-
+      }), error => {
+        console.error("Erro ao buscar previsão do clima", error);
+      });
+    }
 }

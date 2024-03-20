@@ -18,14 +18,12 @@ constructor(private servicoClimaService: ServicoClimaService) {
 
 }
 procurarCidade() {
- // Verifica se a cidade não está vazia antes de chamar o serviço
- if (this.cidade.trim() !== '') {
-  // Chama o método do serviço para buscar as informações climáticas da cidade
+  console.log('Buscando informações para a cidade:', this.cidade);
+  if (this.cidade.trim() !== '') {
   this.servicoClimaService.getPrevisaoClima(this.cidade, '1dd0a6555a320942db378261b6ac18f2')
   .subscribe(previsao => {
-      // Faça o que for necessário com os dados da previsão climática aqui
-      console.log(previsao);
-    });
+    console.log(previsao);
+  });
 } else {
   console.log('Por favor, insira o nome da cidade.');
 }
