@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ServicoClimaService } from '../servico-clima.service';
+import { ServicoClimaService} from '../servico-clima.service';
+import { InformacaoClimaComponent } from '../informacao-clima/informacao-clima.component';
 
 
 @Component({
   selector: 'app-seletor-cidade',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, InformacaoClimaComponent],
   templateUrl: './seletor-cidade.component.html',
   styleUrl: './seletor-cidade.component.css'
 })
@@ -17,15 +18,12 @@ cidade = '';
 constructor(private servicoClimaService: ServicoClimaService) {
 
 }
+
 procurarCidade() {
- // Verifica se a cidade não está vazia antes de chamar o serviço
- if (this.cidade.trim() !== '') {
-  // Chama o método do serviço para buscar as informações climáticas da cidade
-  this.servicoClimaService.getPrevisaoClima(this.cidade, '1dd0a6555a320942db378261b6ac18f2')
-  .subscribe(previsao => {
-      // Faça o que for necessário com os dados da previsão climática aqui
-      console.log(previsao);
-    });
+
+  if (this.cidade.trim() !== '') {
+ this.servicoClimaService.setCidade(this.cidade);
+ console.log(this.servicoClimaService.cidade);
 } else {
   console.log('Por favor, insira o nome da cidade.');
 }

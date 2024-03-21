@@ -1,31 +1,40 @@
-import {Component, Input} from '@angular/core';
-import { ServicoClimaService, PrevisaoClima} from "../servico-clima.service";
+import { Component, Input } from '@angular/core';
+import { ServicoClimaService, PrevisaoClima } from '../servico-clima.service';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-informacao-clima',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './informacao-clima.component.html',
-  styleUrl: './informacao-clima.component.css'
+  styleUrl: './informacao-clima.component.css',
 })
 export class InformacaoClimaComponent {
-  // @ts-ignore
-  @Input() cidadeInformada: string;
+  cidadeInformada: string = '';
   previsaoClima: PrevisaoClima | undefined;
 
   constructor(private servicoClimaService: ServicoClimaService) {}
 
-  ngOnInit() {
-    this.buscaPrevisaoClima();
+  ngOnInit(): void {
+    if (this.servicoClimaService.cidade) {
+      console.log(this.servicoClimaService.cidade);
+      this.cidadeInformada = this.servicoClimaService.cidade;
+      this.getPrevisao();
+    }
   }
 
-  buscaPrevisaoClima() {
-    const apiKey = '1dd0a6555a320942db378261b6ac18f2';
-    this.servicoClimaService.getPrevisaoClima(this.cidadeInformada, apiKey)
-      .subscribe((previsao => {
-        this.previsaoClima = previsao;
-      }))
+  getPrevisao(): void {
+    if (this.servicoClimaService.cidade) {
+      this.servicoClimaService.getPrevisaoClima().subscribe({
+        next: (data) => {
+          this.previsaoClima = data;
+          console.log(this.previsaoClima);
+        },
+        error: (error) => {
+          console.error('There was an error!', error);
+        },
+      });
+    }
   }
-
 }
