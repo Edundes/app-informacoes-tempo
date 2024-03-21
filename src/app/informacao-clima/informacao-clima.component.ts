@@ -1,5 +1,5 @@
-import {Component, Input} from '@angular/core';
-import { ServicoClimaService, PrevisaoClima} from "../servico-clima.service";
+import {Component, Input, OnInit} from '@angular/core';
+import { ServicoClimaService} from "../servico-clima.service";
 import {NgIf} from "@angular/common";
 
 @Component({
@@ -14,24 +14,19 @@ import {NgIf} from "@angular/common";
 export class InformacaoClimaComponent {
   // @ts-ignore
   @Input() cidadeInformada: string;
-  previsaoClima: PrevisaoClima | undefined;
+  clima: any;
 
   constructor(private servicoClimaService: ServicoClimaService) {}
 
-  ngOnInit() {
-    console.log('Cidade informada:', this.cidadeInformada);
-    this.buscaPrevisaoClima();
-  }
+  // ngOnInit() {
+  //   console.log('Cidade informada:', this.cidadeInformada);
+  //   this.buscaPrevisaoClima();
+  // }
 
-  buscaPrevisaoClima() {
-    console.log('Buscando previsão do clima para:', this.cidadeInformada);
-    const apiKey = '1dd0a6555a320942db378261b6ac18f2';
-    this.servicoClimaService.getPrevisaoClima(this.cidadeInformada, apiKey)
-      .subscribe((previsao => {
-        console.log('Dados climáticos recebidos:', previsao);
-        this.previsaoClima = previsao;
-      }), error => {
-        console.error("Erro ao buscar previsão do clima", error);
-      });
-    }
+  buscaPrevisaoClima(): void {
+    console.log("Previsão do clima buscada para a cidade de: ", this.cidadeInformada)
+    this.servicoClimaService.getPrevisaoClima(this.cidadeInformada).subscribe(data => {
+      this.clima = data;
+    })
+  }
 }

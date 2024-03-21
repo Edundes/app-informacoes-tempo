@@ -20,7 +20,7 @@ constructor(private servicoClimaService: ServicoClimaService) {
 procurarCidade() {
   console.log('Buscando informações para a cidade:', this.cidade);
   if (this.cidade.trim() !== '') {
-  this.servicoClimaService.getPrevisaoClima(this.cidade, '1dd0a6555a320942db378261b6ac18f2')
+  this.servicoClimaService.getPrevisaoClima(this.cidade)
   .subscribe(previsao => {
     console.log(previsao);
   });
